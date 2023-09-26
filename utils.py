@@ -37,23 +37,6 @@ class SnacksTriplets(Dataset):
             ]
         )
 
-        # if self.train:
-        #     self.transform = T.Compose(
-        #         [
-        #             # T.ToTensor(),
-        #             T.RandomHorizontalFlip(),
-        #             T.Resize(size=(224, 224))
-        #         ]
-        #     )
-        # else:
-        #     self.transform = T.Compose(
-        #         [
-        #             # T.ToTensor(),
-        #             # T.RandomHorizontalFlip(),
-        #             T.Resize(size=(224, 224))
-        #         ]
-        #     )
-
         self.num_triplets = num_triplets
         self.classes = classes
 
@@ -120,7 +103,7 @@ NUM_WORKERS = 0 if str(device)=='cpu' else 2
 
 
 
-def create_triplet_loader(df, batch_size, num_triplets, classes, transform, train):
+def create_triplet_loader(df, batch_size:int, num_triplets:int, classes:set, transform, train):
     # print('ok1')
     ds = SnacksTriplets(df=df,
                         transform = transform,
